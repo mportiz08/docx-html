@@ -9,8 +9,9 @@ module Docx
       }
 
       def initialize(path, options={})
-        @docx = Docx::Document.open(path)
-        @opts = DEFAULT_OPTIONS.merge(options)
+        @docx =  Docx::Document.open(path)
+        @opts =  DEFAULT_OPTIONS.merge(options)
+        @title = File.basename(path, '.docx') # TODO: add name to Docx::Document
       end
 
       def self.for(path)
@@ -18,23 +19,25 @@ module Docx
       end
 
       def convert
-        return @docx.to_s
-        Html::Writer.new do |html|
-          html.doctype @opts.doctype
+        Html::Writer.new.write do |html|
+          html.doctype @opts[:doctype]
+          html.head do |head|
+            head.title @title
+          end
           html.body do |body|
-            @doc.each_paragraph do |paragraph|
-              body.p do |p|
-                paragraph.each_text_run do |tr|
-                  p inline_content_for tr
-                end
+            @docx.each_paragraph do |paragraph|
+              paragraph.each_text_run do |tr|
+                body.p inline_content_for(tr)
               end
             end
           end
         end
       end
+      
+      private
 
-      def inline_content_for(text)
-        text # TODO
+      def inline_content_for(text_run)
+        text_run.text # TODO
       end
     end
   end
