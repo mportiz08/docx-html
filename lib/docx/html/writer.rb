@@ -1,7 +1,7 @@
 module Docx
   module Html
     class Writer
-      VALID_TAGS = [:head, :title, :body, :p]
+      VALID_TAGS = [:head, :title, :body, :p, :em, :strong]
       
       def initialize
         @html = ''
@@ -27,6 +27,7 @@ module Docx
           yield self
         else
           @html << args.join('')
+          args.join('')
         end
         @html << "</#{name}>"
       end

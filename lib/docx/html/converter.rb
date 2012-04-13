@@ -26,9 +26,7 @@ module Docx
           end
           html.body do |body|
             @docx.each_paragraph do |paragraph|
-              paragraph.each_text_run do |tr|
-                body.p inline_content_for(tr)
-              end
+              body.p paragraph.text_runs.map{ |tr| inline_content_for(tr) }.join('')
             end
           end
         end
@@ -37,7 +35,14 @@ module Docx
       private
 
       def inline_content_for(text_run)
-        text_run.text # TODO
+        inline_content = text_run.text
+        inline_content = wrap(inline_content, :em)     if text_run.italicized?
+        inline_content = wrap(inline_content, :strong) if text_run.bolded?
+        inline_content
+      end
+      
+      def wrap(text, tag)
+        "<#{tag.to_s}>#{text}</#{tag.to_s}>"
       end
     end
   end
