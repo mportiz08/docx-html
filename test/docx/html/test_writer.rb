@@ -3,7 +3,16 @@ require 'test/unit'
 
 class TestWriter < Test::Unit::TestCase
   def test_basic_html_writing
-    expected = '<!DOCTYPE html><html><head><title>foo</title></head><body><p>hello, world</p></body></html>'
+    expected =
+      '<!DOCTYPE html>'\
+      '<html>'\
+      '<head>'\
+        '<title>foo</title>'\
+      '</head>'\
+      '<body>'\
+        '<p>hello, world</p>'\
+      '</body>'\
+      '</html>'
     assert_equal expected, basic_html
   end
   
