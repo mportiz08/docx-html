@@ -1,6 +1,8 @@
 require 'docx'
 require 'html_writer'
 
+require 'docx/html/version'
+
 module Docx
   class Document
     def to_html(options={})

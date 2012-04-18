@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    docx-html (0.1.0)
+      docx (~> 0.1.0)
+      html_writer (~> 0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -12,5 +19,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  docx (~> 0.1.0)
-  html_writer (~> 0.1.0)
+  docx-html!
