@@ -4,6 +4,7 @@ GEM
     docx (0.1.0)
       nokogiri (~> 1.5)
       rubyzip (~> 0.9)
+    html_writer (0.1.0)
     nokogiri (1.5.2)
     rubyzip (0.9.7)
 
@@ -11,4 +12,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  docx
+  docx (~> 0.1.0)
+  html_writer (~> 0.1.0)

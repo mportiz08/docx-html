@@ -1,7 +1,7 @@
-require 'docx/html/converter'
+require 'docx/html'
 require 'test/unit'
 
-class TestConverter < Test::Unit::TestCase
+class TestHtml < Test::Unit::TestCase
   def test_basic_conversion
     expected =
       '<!DOCTYPE html>'\
@@ -14,7 +14,7 @@ class TestConverter < Test::Unit::TestCase
         '<p>world</p>'\
       '</body>'\
       '</html>'
-    actual   = Docx::Html::Converter.new('test/fixtures/basic.docx').convert
+    actual = Docx::Document.open('test/fixtures/basic.docx').to_html(title: 'basic')
     assert_equal expected, actual
   end
   
@@ -38,7 +38,7 @@ class TestConverter < Test::Unit::TestCase
         '</p>'\
         '</body>'\
         '</html>'
-    actual   = Docx::Html::Converter.new('test/fixtures/formatting.docx').convert
+    actual = Docx::Document.open('test/fixtures/formatting.docx').to_html(title: 'formatting')
     assert_equal expected, actual
   end
 end
