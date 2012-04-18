@@ -9,6 +9,8 @@ an extension to the `docx` gem that provides a `to_html` method for documents
 ## usage
 
 ``` ruby
+require 'docx/html'
+
 d = Docx::Document.open('test.docx')
 d.to_html
 ```
